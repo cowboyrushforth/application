@@ -139,6 +139,7 @@ class ApplicationCookbook
     def deploy_provider
       @deploy_provider ||=
         begin
+=begin
           version = Chef::Version.new(Chef::VERSION)
           deploy_provider =
             if version.major > 10 || version.minor >= 14
@@ -146,6 +147,8 @@ class ApplicationCookbook
             else
               Chef::Platform.provider_for_resource(@deploy_resource)
             end
+=end
+          deploy_provider = @deploy_resource.provider_for_action(:nothing)
           deploy_provider.load_current_resource
           deploy_provider
         end
