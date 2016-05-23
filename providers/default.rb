@@ -140,7 +140,7 @@ def run_deploy(force = false)
       ([new_resource]+new_resource.sub_resources).each do |res|
         cmd = res.restart_command
         if cmd.is_a? Proc
-          provider = @deploy_resource.provider_for_action(:nothing)
+          provider = res.provider_for_action(:nothing)
 =begin
           version = Chef::Version.new(Chef::VERSION)
           provider = if version.major > 10 || version.minor >= 14
